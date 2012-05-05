@@ -9,15 +9,21 @@ class Invoice(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
 
 class InvoiceItem(models.Model):
-    product_number = models.ForeignKey('invoice.RawProduct')
+    invoice = models.ForeignKey('invoice.Invoice')
+    invoice_product = models.ForeignKey('invoice.InvoiceProduct')
     quantity = models.PositiveSmallIntegerField(default=0)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
-class RawProduct(models.Model):
+class InvoiceProduct(models.Model):
     number = models.CharField(max_length=50)
-    name = models.CharField(max_length=255)
+    raw_product = models.ForeignKey('invoice.RawProduct')
     vendor_name = models.CharField(max_length=255)
     brand = models.ForeignKey('invoice.Brand')
+    unit = models.ForeignKey('invoice.Unit')
+    quantity = models.PositiveSmallIntegerField(default=0)
+
+class RawProduct(models.Model):
+    name = models.CharField(max_length=255)
     shelf_life = models.PositiveSmallIntegerField(default=0)
 
 class Brand(models.Model):
@@ -35,9 +41,18 @@ class Vendor(models.Model):
 
 class MenuItem(models.Model):
     name = models.CharField(max_length=255)
-    #recipe = models.ManyToManyField()
+    raw_product = models.ForeignKey('invoice.RawProduct')
     shelf_life = models.PositiveSmallIntegerField(default=0)
+    #recipe = models.ManyToManyField()
 
 class Country(models.Model):
     name = models.CharField(max_length=150, unique=True)
     date_added = models.DateTimeField(auto_now_add=True)
+
+class RegularUnit(models.Model):
+    name = models.CharField(max_length=150)
+    abbr = models.CharField(max_length=7)
+
+class StandardUnit(models.Model):
+    name = models.CharField(max_length=150)
+    abbr = models.CharField(max_length=7)
