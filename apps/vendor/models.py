@@ -15,3 +15,10 @@ class Vendor(models.Model):
 class Country(models.Model):
     name = models.CharField(max_length=150, unique=True)
     date_added = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'countries'
+        ordering = ['name']
+
+    def __unicode__(self):
+        return u'{}'.format(self.name)
