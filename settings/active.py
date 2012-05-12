@@ -1,3 +1,4 @@
 from settings import *
 
-DEBUG = False
+DEBUG = True
+LOCAL = True
