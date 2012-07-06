@@ -6,16 +6,16 @@ from django.views.generic.simple import direct_to_template
 from django.contrib import admin
 admin.autodiscover()
 
+from signup.views import HomeView, LoginView
+
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
-
-    # Examples:
-    # url(r'^$', 'agops.views.home', name='home'),
-    # url(r'^agops/', include('agops.foo.urls')),
-
+    (r'^account/', include('account.urls')),
+    (r'^signup/', include('signup.urls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
+    url(r'^$', HomeView.as_view(), name='home'),
     url(r'^404$', direct_to_template, {'template': "404.html"}, name='404'),
     url(r'^500$', direct_to_template, {'template': "500.html"}, name='500'),
 )

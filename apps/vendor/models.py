@@ -12,6 +12,7 @@ class Vendor(models.Model):
     phone = PhoneNumberField(null=True, blank=True, unique=True)
     #payment_terms = 
 
+
 class Country(models.Model):
     name = models.CharField(max_length=150, unique=True)
     date_added = models.DateTimeField(auto_now_add=True)

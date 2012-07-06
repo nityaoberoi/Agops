@@ -79,18 +79,20 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.sites',
-    
+
     'south',
 
+    'account',
     'invoice',
     'product',
     'recipe',
+    'signup',
     'vendor',
-    # Uncomment the next line to enable the admin:
-    # 
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+AUTH_PROFILE_MODULE = 'account.Profile'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
