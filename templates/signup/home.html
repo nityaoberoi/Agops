@@ -1,5 +1,6 @@
 {% extends "site_base.html" %}
 
-{% block body_content %}
-    Hello!!!
+{% block content %}
+    Hello {{ request.user.username }} !!!
+    <a href="{% url logout %}">Logout </a>
 {% endblock %}

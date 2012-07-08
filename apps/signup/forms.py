@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 
 from account import utils
@@ -26,7 +27,10 @@ class SignupForm(forms.Form):
             raise forms.ValidationError(
                     'This email is already signed up.')
 
-    def get_user(self, request):
+    def get_user(self):
         email = self.cleaned_data['email']
-        user = utils.generate_user(email)
-        return user
+        password = self.cleaned_data['password']
+        user = utils.generate_user(email, password)
+        auth_user = authenticate(username=user.username,
+                                password=password)
+        return auth_user

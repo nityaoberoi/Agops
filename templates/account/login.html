@@ -1,5 +1,10 @@
 {% extends "site_base.html" %}
 {% block content %}
+<form id="login-form" action="{% url login %}" method="POST">
+    {{ form.non_field_errors }}
+    {{ form.field_errors }}
     {{ form }}
-    <a href="{%%}"
+    <input type="submit" value="login"></input> 
+</form>
+    <a href="{% url signup %}" >Signup</a>
 {% endblock %}

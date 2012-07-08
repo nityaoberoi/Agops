@@ -1,8 +1,9 @@
+from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from django.http import HttpResponseRedirect
 
-from signup.forms import LoginForm
+from account.forms import LoginForm
 
 
 class LoginView(TemplateView):
@@ -24,5 +25,12 @@ class LoginView(TemplateView):
 
     def compute_context(self):
         context = {}
-        context['form'] = self.form_class()
+        context['form'] = self.form
         return context
+
+
+class LogoutView(View):
+
+    def get(self, request, *args, **kwargs):
+        logout(request, request.user)
+        return HttpResponseRedirect(reverse('login'))

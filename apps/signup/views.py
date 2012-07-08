@@ -1,8 +1,10 @@
+from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
 from django.views.generic.base import TemplateView
 from django.http import HttpResponseRedirect
 
-from signup.forms import LoginForm, SignupForm
+from account.views import LoginView
+from signup.forms import SignupForm
 
 
 class HomeView(TemplateView):
@@ -22,10 +24,10 @@ class HomeView(TemplateView):
         return context
 
 
-class LoginView(TemplateView):
+class SignupView(TemplateView):
 
-    form_class = LoginForm
-    template_name = 'signup/login.html'
+    form_class = SignupForm
+    template_name = 'signup/signup.html'
 
     def get(self, request, *args, **kwargs):
         self.form = self.form_class()
@@ -35,16 +37,14 @@ class LoginView(TemplateView):
     def post(self, request, *args, **kwargs):
         self.form = self.form_class(request.POST)
         if self.form.is_valid():
-            return HttpResponseRedirect(reverse('home'))
+            user = self.form.get_user()
+            if user:
+                login(request, user)
+                return HttpResponseRedirect(reverse('home'))
         context = self.compute_context()
         return self.render_to_response(context)
 
     def compute_context(self):
         context = {}
-        context['form'] = self.form_class()
+        context['form'] = self.form
         return context
-
-class SignupView(TemplateView):
-
-    from_class = SignupForm
-    template_name = 'signup/signup.html'

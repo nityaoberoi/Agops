@@ -46,11 +46,8 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'agops.urls'
@@ -67,6 +64,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
+    'django.core.context_processors.request',
     'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
 )
@@ -92,7 +90,9 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 AUTH_PROFILE_MODULE = 'account.Profile'
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

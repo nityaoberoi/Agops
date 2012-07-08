@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 
+
 class LoginForm(forms.Form):
 
     email = forms.CharField(label="Email",
@@ -43,5 +44,3 @@ class LoginForm(forms.Form):
             login(request, self.user)
             return True
         return False
-
-
