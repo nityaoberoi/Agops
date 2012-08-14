@@ -1,0 +1,27 @@
+- Invoice Form
+- Invoice Items
+- 
+
+- Recipes
+- Recipe LineItems
+
+- Raw Products
+
+- Migrate data into database
+
+
+- Calculate the price of a recipe (from raw product, )
+List of all recipes - price and cost ( price - cost / cost)
+
+
+
+- Twitter Bootstrap
+- Table format of Price vs Cost of a recipe item
+- How much did we spend last week? (where do we get this data from?)
+
+- Category at Invoice Line Item, Invoice or Raw Product?
+- Show Profitability 
+- How much did they spend per day / per week
+- How much did they earn per day / per week
+
+- Show a list / Order it by profitability / popularity / how mcuh they sell etc

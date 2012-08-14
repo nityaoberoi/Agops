@@ -10,5 +10,10 @@ class InvoiceEntry(TemplateView):
     item_formclass = InvoiceItemForm
 
     def get(self, request, *args, **kwargs):
+        self.form = self.form_class()
         return self.render_to_response({})
+
+    def compute_context(self):
+        context = {}
+        context['form'] = form_class()
 
